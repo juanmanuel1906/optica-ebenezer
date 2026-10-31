@@ -467,6 +467,7 @@
 
   if (!reduced && window.gsap) {
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });
     const fine = matchMedia('(pointer: fine)').matches;
 
     /* Intro: el logo se arma con CSS; aquí solo se abre la página, cuando ese armado ya terminó */
@@ -631,7 +632,10 @@
     statement.setAttribute('aria-label', statement.textContent);
     statement.innerHTML = statement.textContent.split(' ').map(w => `<span aria-hidden="true">${w}</span>`).join(' ');
     gsap.fromTo('#statement span', { opacity: .2 }, { opacity: 1, stagger: .1, ease: 'none',
-      scrollTrigger: { trigger: '.signs', start: 'top top', end: '+=130%', pin: true, scrub: .5 } });
+      /* Fijar la sección solo con cursor: en celular choca con la barra de direcciones */
+      scrollTrigger: fine && !small()
+        ? { trigger: '.signs', start: 'top top', end: '+=130%', pin: true, scrub: .5 }
+        : { trigger: statement, start: 'top 85%', end: 'bottom 55%', scrub: .5 } });
   } else if (!reduced) {
     /* Sin GSAP (CDN caído) la intro no puede dejar la página tapada */
     document.querySelector('.intro').remove();

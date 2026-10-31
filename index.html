@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Óptica Ebenezer · Armenia, Quindío</title>
+<meta name="description" content="Monturas originales, lentes formulados y examen visual en Armenia, Quindío. Cra. 15 #17-23, local 1.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='101 14 128 128'%3E%3Ccircle cx='165' cy='78' r='62' fill='%233fdcf0'/%3E%3Ccircle cx='172' cy='78' r='50' fill='%231f7fd6'/%3E%3Cellipse cx='178' cy='78' rx='21' ry='27' fill='%230a1a6b'/%3E%3Cellipse cx='184' cy='64' rx='6' ry='7' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a1f5c;
+    --blue: #1667d9;
+    --sky: #cdf3fa;
+    --paper: #f6f5ef;
+    --white: #ffffff;
+    --cyan: #3fdcf0;
+    --gold: #f2a900;
+    --muted: #4c5a86;
+    --line: rgba(10, 31, 92, .16);
+    --gutter: clamp(16px, 4vw, 56px);
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
+    --body: "Instrument Sans", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.55 var(--body); overflow-x: clip; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: .98; letter-spacing: -.03em; }
+  h2 { font-size: clamp(2.4rem, 6.5vw, 5.5rem); }
+  section { padding: clamp(120px, 16vw, 240px) var(--gutter); }
+  .exam, .signs, .visit { margin-block: clamp(32px, 5vw, 80px); }
+  .w { display: inline-block; overflow: hidden; vertical-align: top; padding-block: .14em; margin-block: -.14em; }
+  .w > span { display: inline-block; }
+  .kicker { font-weight: 600; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 99px; background: var(--blue); color: var(--white); font-weight: 600; text-decoration: none; transition: background .25s, color .25s; }
+  .btn:hover { background: var(--ink); }
+  .btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: var(--white); }
+  :focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+
+  /* Nav */
+  .nav { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px var(--gutter); background: rgba(246, 245, 239, .9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .brand { display: block; line-height: 0; text-decoration: none; }
+  .logo { display: block; height: 54px; width: auto; overflow: visible; }
+
+  /* Intro, progreso y WhatsApp */
+  .intro { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: var(--gutter); background: var(--ink); }
+  .intro .logo { height: auto; width: min(82vw, 620px); }
+  .locked { overflow: hidden; }
+  .progress { position: fixed; inset: 0 0 auto; z-index: 25; height: 4px; background: var(--cyan); transform: scaleX(0); transform-origin: left; }
+  .fab { position: fixed; z-index: 30; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); width: 60px; height: 60px; display: grid; place-items: center; border-radius: 50%; background: #25d366; color: var(--white); box-shadow: 0 10px 28px rgba(10, 31, 92, .35); }
+  .fab::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #25d366; z-index: -1; animation: ping 2.4s ease-out infinite; }
+  .fab svg { width: 32px; height: 32px; }
+  @keyframes ping { to { transform: scale(1.7); opacity: 0; } }
+  .nav-links { display: flex; align-items: center; gap: 26px; font-weight: 500; font-size: .95rem; }
+  .nav-links a { text-decoration: none; }
+  .nav-links a:not(.chip):hover { text-decoration: underline; }
+  .chip { padding: 8px 16px; border-radius: 99px; background: var(--ink); color: var(--white); }
+  @media (max-width: 720px) { .nav-links a:not(.chip) { display: none; } }
+
+  /* Hero: el titular solo se ve nítido a través de las gafas */
+  .hero { position: relative; height: 100svh; min-height: 640px; overflow: hidden; padding: 0; background: var(--paper); }
+  .layer { position: absolute; inset: 0; padding: clamp(92px, 13vh, 130px) var(--gutter) 0; pointer-events: none; }
+  .layer h1, .layer .h1 { font: 800 clamp(3.2rem, min(15.5vw, 20vh), 11rem)/.92 var(--display); letter-spacing: -.045em; display: block; }
+  @media (max-width: 720px) { .layer { padding-top: 17vh; } }
+  .layer-blur { display: none; }
+  .js .layer-blur { display: block; filter: blur(clamp(7px, 1vw, 13px)); opacity: .6; }
+  .js .layer-sharp {
+    background: var(--sky);
+    -webkit-mask-image: radial-gradient(circle var(--r) at calc(var(--x) - var(--g)) var(--y), #000 99%, transparent), radial-gradient(circle var(--r) at calc(var(--x) + var(--g)) var(--y), #000 99%, transparent);
+    mask-image: radial-gradient(circle var(--r) at calc(var(--x) - var(--g)) var(--y), #000 99%, transparent), radial-gradient(circle var(--r) at calc(var(--x) + var(--g)) var(--y), #000 99%, transparent);
+  }
+  .frames { display: none; position: absolute; left: 0; top: 0; pointer-events: none; color: var(--ink); will-change: transform; }
+  .js .frames { display: block; }
+  .hero-foot { position: absolute; z-index: 3; inset: auto var(--gutter) clamp(24px, 5vh, 48px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; padding-right: 72px; }
+  .hero-foot p { max-width: 34ch; font-size: 1.15rem; font-weight: 500; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Cinta */
+  .ribbon { background: var(--blue); color: var(--white); overflow: hidden; padding: 16px 0; font: 600 clamp(1.1rem, 2vw, 1.6rem) var(--display); }
+  .ribbon div { display: flex; width: max-content; animation: slide 32s linear infinite; }
+  .ribbon span { padding-right: 2.5em; white-space: nowrap; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* Servicios */
+  .services-head { max-width: 15ch; margin-bottom: clamp(40px, 6vw, 80px); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; }
+  .card { background: var(--white); border-radius: 28px; padding: 32px 28px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; transition: background .3s, color .3s; }
+  .card:hover { background: var(--ink); color: var(--white); }
+  .card svg { width: 76px; height: 76px; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .card h3 { font-size: 1.9rem; margin-bottom: 10px; }
+
+  /* Carta de agudeza */
+  .exam { background: var(--ink); color: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
+  .exam .kicker { color: var(--cyan); }
+  .exam h2 { margin-bottom: 24px; }
+  .exam p { max-width: 42ch; color: #d7e0fb; margin-bottom: 32px; }
+  .exam .btn { background: var(--cyan); color: var(--ink); }
+  .exam .btn:hover { background: var(--white); }
+  .chart { background: var(--paper); color: var(--ink); border-radius: 28px; padding: clamp(32px, 5vw, 64px) 16px; text-align: center; font: 800 1rem/1.1 var(--display); }
+  .chart div { letter-spacing: .14em; margin-right: -.14em; }
+  .chart div:nth-child(1) { font-size: clamp(6rem, 13vw, 11rem); }
+  .chart div:nth-child(2) { font-size: clamp(3.8rem, 8vw, 6.75rem); }
+  .chart div:nth-child(3) { font-size: clamp(2.4rem, 5vw, 4.25rem); }
+  .chart div:nth-child(4) { font-size: clamp(1.4rem, 2.8vw, 2.4rem); }
+  .chart small { display: block; margin-top: 24px; font: 500 .9rem var(--body); color: var(--muted); }
+  @media (max-width: 860px) { .exam { grid-template-columns: 1fr; } }
+
+  /* Asesor de monturas */
+  .finder-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+  .finder-copy > p { color: var(--muted); max-width: 42ch; margin: 22px 0 28px; }
+  .shapes { display: flex; flex-wrap: wrap; gap: 10px; }
+  .shapes button { min-height: 46px; padding: 0 20px; border-radius: 99px; border: 1.5px solid var(--ink); background: transparent; color: var(--ink); font: 600 1rem var(--body); cursor: pointer; transition: background .2s, color .2s; }
+  .shapes button[aria-pressed="true"], .shapes button:hover { background: var(--ink); color: var(--white); }
+  .stage { background: var(--sky); border-radius: 28px; padding: clamp(24px, 4vw, 48px); text-align: center; }
+  .stage svg { width: min(100%, 320px); height: auto; display: block; margin: 0 auto 20px; }
+  .stage h3 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 10px; }
+  .stage p { max-width: 38ch; margin: 0 auto; }
+  @media (max-width: 860px) { .finder-layout { grid-template-columns: 1fr; } }
+
+  /* Lengua de señas */
+  .signs { background: var(--blue); color: var(--white); }
+  .signs .kicker { color: var(--white); }
+  .statement { font: 800 clamp(2.2rem, 6.4vw, 6rem)/1.04 var(--display); letter-spacing: -.035em; max-width: 19ch; }
+
+  /* Reseñas */
+  .reviews-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: clamp(40px, 6vw, 72px); }
+  .score { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+  .score b { font: 800 clamp(3.5rem, 8vw, 6rem)/1 var(--display); letter-spacing: -.04em; }
+  .score span { font-weight: 500; }
+  .stars { color: var(--gold); letter-spacing: .1em; font-size: 1.2rem; }
+  .stars span { display: inline-block; }
+  .score .stars { display: block; }
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+  .quotes figure { margin: 0; background: var(--white); border-radius: 28px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; }
+  .quotes blockquote { font: 600 1.3rem/1.3 var(--display); letter-spacing: -.01em; }
+  .quotes figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; font-size: .95rem; color: var(--muted); }
+
+  /* Pagos */
+  .pay { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: end; }
+  .pay ul { list-style: none; padding: 0; }
+  .pay li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 22px 0; border-top: 1.5px solid var(--line); font: 800 clamp(1.8rem, 4vw, 3.2rem) var(--display); letter-spacing: -.03em; }
+  .pay li:last-child { border-bottom: 1.5px solid var(--line); }
+  .pay li span { font: 500 .95rem var(--body); letter-spacing: 0; color: var(--muted); text-align: right; }
+  .pay-copy p { color: var(--muted); max-width: 40ch; margin-top: 22px; }
+  @media (max-width: 860px) { .pay { grid-template-columns: 1fr; } }
+
+  /* Visita */
+  .visit { margin-bottom: 0; background: var(--cyan); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: stretch; }
+  .visit .kicker { color: var(--ink); }
+  .visit address { font: 600 clamp(1.3rem, 2.4vw, 1.8rem)/1.25 var(--display); margin: 24px 0 18px; }
+  .hours { font-weight: 500; margin-bottom: 32px; }
+  .map { width: 100%; min-height: 380px; height: 100%; border: 0; border-radius: 28px; background: var(--white); }
+  @media (max-width: 860px) { .visit { grid-template-columns: 1fr; } }
+
+  footer { background: var(--ink); color: #d7e0fb; padding: 40px 96px 40px var(--gutter); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; font-size: .9rem; }
+  footer .logo { height: 76px; }
+
+  /* Pantallas pequeñas: todo centrado */
+  @media (max-width: 860px) {
+    section, .layer, .hero-foot { text-align: center; }
+    .hero { padding: 0; }
+    .hero-foot { flex-direction: column; align-items: center; padding-right: 0; bottom: 96px; }
+    .actions, .shapes { justify-content: center; }
+    .services-head, .exam p, .finder-copy > p, .statement, .pay-copy p { margin-inline: auto; }
+    .grid, .quotes { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
+    .card { align-items: center; }
+    .reviews-head { flex-direction: column; align-items: center; }
+    .score { justify-content: center; text-align: left; }
+    .quotes figcaption { flex-direction: column; justify-content: center; }
+    .pay li { flex-direction: column; align-items: center; gap: 4px; }
+    .pay li span { text-align: center; }
+    .visit address { margin-inline: auto; }
+    footer { flex-direction: column; justify-content: center; text-align: center; padding: 40px var(--gutter) 104px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .ribbon div, .fab::before { animation: none; }
+    .card, .btn { transition: none; }
+  }
+</style>
+<script>
+  /* Con animaciones la página siempre carga arriba: restaurar el scroll bajo la intro desincroniza ScrollTrigger */
+  const startHash = location.hash;
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js');
+    history.scrollRestoration = 'manual';
+    if (startHash) history.replaceState(null, '', location.pathname + location.search);
+  }
+</script>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<a class="fab" href="https://wa.me/573001627549" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>
+</a>
+
+<nav class="nav" aria-label="Principal">
+  <a class="brand" href="#inicio">
+    <svg class="logo" viewBox="0 0 640 260" role="img" aria-label="Óptica Ebenezer">
+      <defs>
+        <path id="l-e" d="M0 0H56V17H19V40H50V57H19V83H58V100H0Z"/>
+        <path id="l-b" fill-rule="evenodd" d="M0 0H34C52 0 60 11 60 25C60 37 54 44 46 47C56 49 64 58 64 71C64 88 52 100 34 100H0ZM19 16V40H31C38 40 41 34 41 28C41 21 38 16 31 16ZM19 56V84H33C41 84 45 78 45 70C45 62 41 56 33 56Z"/>
+        <path id="l-n" d="M0 0H18L46 63V0H64V100H46L18 37V100H0Z"/>
+        <path id="l-z" d="M3 0H60V15L23 83H61V100H0V85L37 17H3Z"/>
+        <path id="l-r" fill-rule="evenodd" d="M0 0H36C54 0 63 12 63 29C63 42 57 51 47 55L66 100H45L29 58H19V100H0ZM19 16V42H33C40 42 44 37 44 29C44 21 40 16 33 16Z"/>
+      </defs>
+      <path class="logo-plate" fill="#eafcff" stroke="#3fdcf0" stroke-width="5" stroke-linejoin="round" d="M175 8C120 8 70 40 30 92C60 130 95 150 130 160V238Q130 248 140 248H622Q632 248 632 238V122Q632 112 622 112H238C238 60 215 8 175 8Z"/>
+      <rect class="logo-tube" x="52" y="78" width="38" height="11" rx="5.5" fill="#3fdcf0" transform="rotate(-48 71 83)"/>
+      <rect class="logo-band" x="140" y="120" width="484" height="120" rx="6" fill="#a5eef8"/>
+      <g class="logo-eye">
+        <circle cx="165" cy="78" r="62" fill="#3fdcf0"/>
+        <circle cx="172" cy="78" r="50" fill="#1f7fd6"/>
+        <g class="logo-pupil">
+          <ellipse cx="178" cy="78" rx="21" ry="27" fill="#0a1a6b"/>
+          <ellipse cx="184" cy="64" rx="6" ry="7" fill="#fff"/>
+        </g>
+      </g>
+      <g fill="#0b1638" transform="translate(150 130) scale(.86 1)">
+        <use class="ltr" href="#l-e" x="0"/>
+        <use class="ltr" href="#l-b" x="66"/>
+        <use class="ltr" href="#l-e" x="138"/>
+        <use class="ltr" href="#l-n" x="204"/>
+        <use class="ltr" href="#l-e" x="276"/>
+        <use class="ltr" href="#l-z" x="342"/>
+        <use class="ltr" href="#l-e" x="411"/>
+        <use class="ltr" href="#l-r" x="477"/>
+      </g>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#monturas">Monturas</a>
+    <a href="#pagos">Pagos</a>
+    <a class="chip" href="#visita">Visítanos</a>
+  </div>
+</nav>
+
+<main>
+  <header class="hero" id="inicio">
+    <div class="layer layer-blur" aria-hidden="true"><span class="h1">Vuelve a<br>verlo todo<br>con claridad.</span></div>
+    <div class="layer layer-sharp"><h1>Vuelve a<br>verlo todo<br>con claridad.</h1></div>
+    <svg class="frames" viewBox="0 0 340 130" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" aria-hidden="true">
+      <circle cx="104" cy="65" r="55"/><circle cx="236" cy="65" r="55"/>
+      <path d="M159 60q11-11 22 0M49 58 16 44M291 58l33-14"/>
+    </svg>
+    <div class="hero-foot">
+      <p>Nuestra prioridad es tu salud visual. Monturas originales y asesoría personalizada en Armenia, Quindío.</p>
+      <div class="actions">
+        <a class="btn" href="https://wa.me/573001627549" target="_blank" rel="noopener">Agenda tu cita</a>
+        <a class="btn ghost" href="#monturas">Encuentra tu montura</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="ribbon" aria-hidden="true"><div>
+    <span>Monturas con 50% de descuento</span><span>Examen visual gratis por la compra</span><span>Paga con Addi, Brilla o Sistecrédito</span><span>Atención en lengua de señas</span>
+    <span>Monturas con 50% de descuento</span><span>Examen visual gratis por la compra</span><span>Paga con Addi, Brilla o Sistecrédito</span><span>Atención en lengua de señas</span>
+  </div></div>
+
+  <section id="servicios">
+    <p class="kicker">Lo que hacemos</p>
+    <h2 class="services-head">No vendemos solo gafas, creamos experiencias.</h2>
+    <div class="grid">
+      <article class="card">
+        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M6 40s13-22 34-22 34 22 34 22-13 22-34 22S6 40 6 40Z"/><circle cx="40" cy="40" r="11"/></svg>
+        <div><h3>Examen visual</h3><p>Revisamos tu visión antes de recomendarte cualquier lente.</p></div>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><circle cx="40" cy="40" r="32"/><path d="M26 28a20 20 0 0 1 14-6"/></svg>
+        <div><h3>Lentes formulados</h3><p>Hechos a partir de tu fórmula, para que veas bien.</p></div>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><rect x="5" y="28" width="30" height="24" rx="8"/><rect x="45" y="28" width="30" height="24" rx="8"/><path d="M35 37q5-4 10 0"/></svg>
+        <div><h3>Monturas originales</h3><p>Moda y estilo, con asesoría para elegir las que van contigo.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="exam">
+    <div>
+      <p class="kicker">Examen visual</p>
+      <h2>Tu próxima fórmula empieza aquí.</h2>
+      <p>El examen visual es totalmente gratis por la compra de tus gafas. Escríbenos y agenda tu cita.</p>
+      <a class="btn" href="https://wa.me/573001627549" target="_blank" rel="noopener">Quiero mi examen</a>
+    </div>
+    <div class="chart" role="img" aria-label="Carta de agudeza visual con el nombre Ebenezer">
+      <div>E</div><div>BE</div><div>NEZ</div><div>ER</div>
+      <small>Sigue bajando y mira cómo se enfoca</small>
+    </div>
+  </section>
+
+  <section id="monturas">
+    <div class="finder-layout">
+      <div class="finder-copy">
+        <p class="kicker">Asesor de monturas</p>
+        <h2>¿Qué gafas van con tu rostro?</h2>
+        <p>Elige la forma que más se parece a la tuya. Es una guía para empezar; en la óptica te ayudamos a probarlas.</p>
+        <div class="shapes" role="group" aria-label="Forma de rostro">
+          <button type="button" data-shape="ovalado" aria-pressed="true">Ovalado</button>
+          <button type="button" data-shape="redondo" aria-pressed="false">Redondo</button>
+          <button type="button" data-shape="cuadrado" aria-pressed="false">Cuadrado</button>
+          <button type="button" data-shape="corazon" aria-pressed="false">Corazón</button>
+        </div>
+      </div>
+      <div class="stage" aria-live="polite">
+        <svg id="face" viewBox="0 0 320 340" fill="none" stroke="#0a1f5c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
+        <h3 id="shape-title"></h3>
+        <p id="shape-text"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="signs">
+    <p class="kicker">Inclusión</p>
+    <p class="statement" id="statement">Queremos que te sientas en confianza: te escuchamos con las manos y te acompañamos a encontrar las gafas perfectas para ti.</p>
+  </section>
+
+  <section id="resenas">
+    <div class="reviews-head">
+      <div>
+        <p class="kicker">Reseñas en Google</p>
+        <h2>Lo dicen quienes ya ven mejor.</h2>
+      </div>
+      <a class="score" href="https://www.google.com/maps/search/?api=1&query=%C3%93ptica+Ebenezer+Cra+15+%2317-23+Armenia+Quind%C3%ADo" target="_blank" rel="noopener">
+        <b>4,9</b>
+        <span><span class="stars" aria-hidden="true">★★★★★</span><span id="review-count">36</span> reseñas en Google Maps</span>
+      </a>
+    </div>
+    <div class="quotes">
+      <figure class="reveal">
+        <blockquote>Muy profesionales, te ayudan con tus dudas y te asesoran para que escojas las gafas que mejor te queden. Me encantaron mis gafas.</blockquote>
+        <figcaption>Diana P. <span class="stars" role="img" aria-label="5 estrellas">★★★★★</span></figcaption>
+      </figure>
+      <figure class="reveal">
+        <blockquote>Muy buenas personas, un excelente servicio, variedad de estilos y gafas, precios muy asequibles.</blockquote>
+        <figcaption>Tatiana G. <span class="stars" role="img" aria-label="5 estrellas">★★★★★</span></figcaption>
+      </figure>
+      <figure class="reveal">
+        <blockquote>Muy buen servicio, excelentes precios y me gusta que dan garantía.</blockquote>
+        <figcaption>Diana C. <span class="stars" role="img" aria-label="5 estrellas">★★★★★</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="pay" id="pagos">
+    <div class="pay-copy">
+      <p class="kicker">Medios de pago</p>
+      <h2>Estrena gafas sin esperar.</h2>
+      <p>Compra hoy y paga con la opción de financiación que prefieras.</p>
+    </div>
+    <ul>
+      <li class="reveal">Addi <span>Financiación</span></li>
+      <li class="reveal">Brilla <span>Financiación</span></li>
+      <li class="reveal">Sistecrédito <span>Financiación</span></li>
+    </ul>
+  </section>
+
+  <section class="visit" id="visita">
+    <div>
+      <p class="kicker">Visítanos</p>
+      <h2>Te esperamos en Armenia.</h2>
+      <address>Cra. 15 #17-23, local 1<br>Armenia, Quindío<br><a href="tel:+573001627549">300 162 7549</a></address>
+      <p class="hours">Lunes a viernes: 8:30 a. m. a 6:30 p. m.<br>Sábados: 9:00 a. m. a 6:00 p. m.<br>Domingos: cerrado</p>
+      <div class="actions">
+        <a class="btn" href="https://wa.me/573001627549" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Cra.+15+%2317-23+Armenia+Quindio" target="_blank" rel="noopener">Cómo llegar</a>
+        <a class="btn ghost" href="https://www.instagram.com/optica__ebenezer/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <iframe class="map" title="Mapa de Cra. 15 #17-23, Armenia" loading="lazy" src="https://www.google.com/maps?q=Cra.+15+%2317-23+Armenia+Quindio&output=embed"></iframe>
+  </section>
+</main>
+
+<footer>
+  <span id="footer-brand">Óptica Ebenezer · Armenia, Quindío</span>
+  <span>Demo de propuesta, no es el sitio oficial de la óptica.</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Asesor de monturas */
+  const faces = {
+    ovalado: '<ellipse cx="160" cy="170" rx="105" ry="145"/>',
+    redondo: '<circle cx="160" cy="170" r="128"/>',
+    cuadrado: '<rect x="42" y="42" width="236" height="256" rx="44"/>',
+    corazon: '<path d="M160 318C105 280 40 205 40 110c0-40 30-66 66-66 24 0 44 10 54 30 10-20 30-30 54-30 36 0 66 26 66 66 0 95-65 170-120 208Z"/>'
+  };
+  const frames = {
+    ovalado: '<rect x="62" y="130" width="84" height="56" rx="20"/><rect x="174" y="130" width="84" height="56" rx="20"/>',
+    redondo: '<rect x="56" y="128" width="90" height="56" rx="6"/><rect x="174" y="128" width="90" height="56" rx="6"/>',
+    cuadrado: '<circle cx="104" cy="156" r="42"/><circle cx="216" cy="156" r="42"/>',
+    corazon: '<path d="M64 134h82v18c0 24-16 40-41 40s-41-16-41-40Z"/><path d="M174 134h82v18c0 24-16 40-41 40s-41-16-41-40Z"/>'
+  };
+  const advice = {
+    ovalado: ['Casi todo te queda', 'Tus proporciones son equilibradas: prueba desde monturas rectangulares suaves hasta formas más atrevidas.'],
+    redondo: ['Busca ángulos', 'Las monturas rectangulares aportan líneas definidas y hacen que el rostro se vea más largo.'],
+    cuadrado: ['Suaviza con curvas', 'Las formas redondas u ovaladas equilibran una mandíbula marcada.'],
+    corazon: ['Equilibra la frente', 'Las monturas tipo aviador o más ligeras en la parte inferior compensan una frente amplia.']
+  };
+  const face = document.getElementById('face');
+  const buttons = document.querySelectorAll('.shapes button');
+  function showShape(shape) {
+    face.innerHTML = faces[shape] + '<g stroke="#1667d9" stroke-width="7">' + frames[shape] + '<path d="M146 150q14-10 28 0"/></g><path d="M125 250q35 22 70 0"/>';
+    document.getElementById('shape-title').textContent = advice[shape][0];
+    document.getElementById('shape-text').textContent = advice[shape][1];
+    buttons.forEach(b => b.setAttribute('aria-pressed', b.dataset.shape === shape));
+    if (!reduced && window.gsap) gsap.fromTo('#face g', { y: -36, opacity: 0 }, { y: 0, opacity: 1, duration: .55, ease: 'back.out(2)' });
+  }
+  buttons.forEach(b => b.addEventListener('click', () => showShape(b.dataset.shape)));
+  showShape('ovalado');
+
+  /* El logo vive en el menú; el pie y la intro usan copias */
+  const navLogo = document.querySelector('.brand .logo');
+  function logoCopy() {
+    const copy = navLogo.cloneNode(true);
+    copy.querySelector('defs').remove();
+    return copy;
+  }
+  const footerBrand = document.getElementById('footer-brand');
+  footerBrand.textContent = '';
+  footerBrand.append(logoCopy());
+
+  if (!reduced && window.gsap) {
+    gsap.registerPlugin(ScrollTrigger);
+    const fine = matchMedia('(pointer: fine)').matches;
+
+    /* Intro: se arma el logo, parpadea y se abre la página */
+    const intro = document.createElement('div');
+    intro.className = 'intro';
+    intro.setAttribute('aria-hidden', 'true');
+    const introLogo = logoCopy();
+    intro.append(introLogo);
+    document.body.append(intro);
+    document.body.classList.add('locked');
+    const introEye = introLogo.querySelector('.logo-eye');
+    gsap.timeline({ onComplete() {
+      intro.remove();
+      document.body.classList.remove('locked');
+      ScrollTrigger.refresh();
+      startBlink();
+      if (startHash) document.querySelector(startHash)?.scrollIntoView();
+    } })
+      .from(introLogo.querySelector('.logo-plate'), { opacity: 0, scale: .9, transformOrigin: '50% 50%', duration: .45, ease: 'power2.out' })
+      .from(introLogo.querySelector('.logo-band'), { scaleX: 0, transformOrigin: '0 50%', duration: .4, ease: 'power3.out' }, '-=.2')
+      .from(introEye, { scale: 0, transformOrigin: '50% 50%', duration: .55, ease: 'back.out(2.2)' }, '-=.3')
+      .from(introLogo.querySelectorAll('.ltr'), { y: 46, opacity: 0, stagger: .045, duration: .4, ease: 'power3.out' }, '-=.4')
+      .to(introEye, { scaleY: .06, transformOrigin: '50% 50%', duration: .09, yoyo: true, repeat: 1 }, '+=.1')
+      .to(intro, { yPercent: -100, duration: .7, ease: 'power4.inOut' }, '+=.15')
+      .from('.nav', { y: -90, duration: .6, ease: 'power3.out' }, '-=.35')
+      .from('.hero-foot p, .hero-foot .btn', { y: 36, opacity: 0, stagger: .08, duration: .6, ease: 'power3.out' }, '-=.45')
+      .from('.fab', { scale: 0, duration: .6, ease: 'back.out(2.5)' }, '-=.3');
+
+    /* El ojo del logo parpadea y mira hacia el cursor */
+    function startBlink() {
+      gsap.timeline({ repeat: -1, repeatDelay: 3.6 })
+        .to('.logo-eye', { scaleY: .06, transformOrigin: '50% 50%', duration: .09, yoyo: true, repeat: 1 });
+    }
+    const navPupil = navLogo.querySelector('.logo-pupil');
+    const lookX = gsap.quickTo(navPupil, 'x', { duration: .4, ease: 'power3' });
+    const lookY = gsap.quickTo(navPupil, 'y', { duration: .4, ease: 'power3' });
+    addEventListener('pointermove', e => {
+      const b = navLogo.getBoundingClientRect();
+      const angle = Math.atan2(e.clientY - b.top, e.clientX - b.left);
+      lookX(Math.cos(angle) * 20);
+      lookY(Math.sin(angle) * 16);
+    });
+
+    /* Barra de progreso */
+    gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: .3 } });
+
+    /* Gafas del hero */
+    const hero = document.querySelector('.hero');
+    const sharp = document.querySelector('.layer-sharp');
+    const glasses = document.querySelector('.frames');
+    const pos = { x: 0, y: 0 };
+    let r = 0, followed = false;
+
+    function render() {
+      const g = r * 66 / 55;
+      sharp.style.setProperty('--x', pos.x + 'px');
+      sharp.style.setProperty('--y', pos.y + 'px');
+      sharp.style.setProperty('--r', r + 'px');
+      sharp.style.setProperty('--g', g + 'px');
+      const w = 340 * r / 55, h = 130 * r / 55;
+      glasses.style.width = w + 'px';
+      glasses.style.transform = `translate(${pos.x - w / 2}px, ${pos.y - h / 2}px)`;
+    }
+    function size() {
+      r = Math.min(Math.max(hero.clientWidth * .1, 62), 150, hero.clientWidth / 6.3);
+      render();
+    }
+    const box = () => hero.getBoundingClientRect();
+    const title = document.querySelector('.layer-sharp h1').getBoundingClientRect();
+    const small = () => innerWidth <= 860;
+    pos.x = small() ? box().width / 2 : title.left + title.width * .28;
+    pos.y = title.top + title.height * .5;
+    size();
+    addEventListener('resize', size);
+
+    /* Recorre el titular sola hasta que el visitante mueve el cursor o el dedo */
+    const drift = gsap.timeline({ repeat: -1, yoyo: true, onUpdate: render, defaults: { ease: 'sine.inOut' } })
+      .to(pos, { x: () => small() ? box().width * .56 : Math.min(box().width * .62, title.right - r), y: () => title.top + title.height * .18, duration: 3.2 })
+      .to(pos, { x: () => small() ? box().width * .44 : Math.max(box().width * .26, r * 2), y: () => title.top + title.height * .84, duration: 3.2 });
+
+    const follow = { x: gsap.quickTo(pos, 'x', { duration: .35, ease: 'power3', onUpdate: render }),
+                     y: gsap.quickTo(pos, 'y', { duration: .35, ease: 'power3', onUpdate: render }) };
+    hero.addEventListener('pointermove', e => {
+      if (small()) return;
+      if (!followed) { followed = true; drift.kill(); }
+      const b = box();
+      follow.x(e.clientX - b.left);
+      follow.y(e.clientY - b.top);
+    });
+
+    /* El pie del hero se despide al bajar */
+    gsap.to('.hero-foot', { y: -70, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: '45% top', scrub: true } });
+
+    /* La cinta acelera y cambia de sentido con el scroll */
+    const ribbonAnim = document.querySelector('.ribbon div').getAnimations()[0];
+    if (ribbonAnim) ScrollTrigger.create({ onUpdate(self) {
+      ribbonAnim.playbackRate = self.direction * (1 + Math.min(Math.abs(self.getVelocity()) / 300, 6));
+      gsap.to(ribbonAnim, { playbackRate: self.direction, duration: .9, overwrite: true });
+    } });
+
+    /* Títulos que suben palabra por palabra */
+    gsap.utils.toArray('h2').forEach(h => {
+      h.innerHTML = h.textContent.split(' ').map(w => `<span class="w"><span>${w}</span></span>`).join(' ');
+      gsap.from(h.querySelectorAll('.w > span'), { yPercent: 115, rotate: 5, stagger: .06, duration: .9, ease: 'power4.out', scrollTrigger: { trigger: h, start: 'top 88%', once: true } });
+    });
+    gsap.utils.toArray('.kicker').forEach(k => {
+      gsap.from(k, { x: -30, opacity: 0, duration: .7, ease: 'power3.out', scrollTrigger: { trigger: k, start: 'top 92%', once: true } });
+    });
+
+    /* Apariciones */
+    gsap.utils.toArray('.reveal, .exam p:not(.kicker), .exam .btn, .finder-copy > p:not(.kicker), .shapes button, .pay-copy > p:not(.kicker), .visit address, .hours, .visit .btn').forEach(el => {
+      gsap.from(el, { y: 50, opacity: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+    });
+
+    /* Tarjetas: entran en abanico, dibujan su ícono y se inclinan con el cursor */
+    gsap.utils.toArray('.card').forEach((card, i) => {
+      const icon = card.querySelector('svg');
+      const shapes = [...icon.children];
+      shapes.forEach(shape => shape.setAttribute('pathLength', 100));
+      gsap.set(shapes, { strokeDasharray: '100 100', strokeDashoffset: 100 });
+      gsap.timeline({ delay: small() ? 0 : i * .18, scrollTrigger: { trigger: card, start: 'top 88%', once: true } })
+        .from(card, { y: 70, opacity: 0, rotate: [-2, 0, 2][i], duration: 1.2, ease: 'power2.out' })
+        .from(icon, { opacity: 0, scale: .8, transformOrigin: '50% 50%', duration: 1.4, ease: 'sine.out' }, .25)
+        .to(shapes, { strokeDashoffset: 0, duration: 1.8, stagger: .2, ease: 'sine.inOut' }, .25)
+        .set(shapes, { strokeDasharray: 'none' });
+    });
+    if (fine) gsap.utils.toArray('.card').forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const b = card.getBoundingClientRect();
+        gsap.to(card, { rotationY: ((e.clientX - b.left) / b.width - .5) * 14, rotationX: ((e.clientY - b.top) / b.height - .5) * -14, y: -8, transformPerspective: 800, duration: .4 });
+      });
+      card.addEventListener('pointerleave', () => gsap.to(card, { rotationX: 0, rotationY: 0, y: 0, duration: .7, ease: 'elastic.out(1, .5)' }));
+    });
+
+    /* Botones magnéticos */
+    if (fine) gsap.utils.toArray('.btn, .fab').forEach(btn => {
+      btn.addEventListener('pointermove', e => {
+        const b = btn.getBoundingClientRect();
+        gsap.to(btn, { x: (e.clientX - b.left - b.width / 2) * .3, y: (e.clientY - b.top - b.height / 2) * .3, duration: .3 });
+      });
+      btn.addEventListener('pointerleave', () => gsap.to(btn, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1, .4)' }));
+    });
+
+    /* Los paneles de color se abren hasta ocupar todo el ancho */
+    gsap.utils.toArray('.exam, .visit').forEach(panel => {
+      gsap.fromTo(panel, { clipPath: 'inset(6% 6% round 56px)' }, { clipPath: 'inset(0% 0% round 0px)', ease: 'none', scrollTrigger: { trigger: panel, start: 'top 95%', end: 'top 30%', scrub: .6 } });
+    });
+    gsap.fromTo('.chart', { scale: .82, rotate: -3 }, { scale: 1, rotate: 0, ease: 'none', scrollTrigger: { trigger: '.chart', start: 'top 95%', end: 'center 50%', scrub: .6 } });
+    gsap.from('.stage', { y: 90, opacity: 0, rotate: 3, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.stage', start: 'top 85%', once: true } });
+    gsap.to('.stage svg', { y: -12, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    gsap.from('.map', { scale: .9, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.map', start: 'top 88%', once: true } });
+
+    /* Reseñas: la nota sube contando y las estrellas aparecen una a una */
+    const score = document.querySelector('.score b');
+    const count = document.getElementById('review-count');
+    const tally = { score: 0, count: 0 };
+    gsap.to(tally, { score: 4.9, count: 36, duration: 1.8, ease: 'power2.out',
+      scrollTrigger: { trigger: '.score', start: 'top 90%', once: true },
+      onUpdate() { score.textContent = tally.score.toFixed(1).replace('.', ','); count.textContent = Math.round(tally.count); } });
+    gsap.utils.toArray('.stars').forEach(stars => {
+      stars.innerHTML = [...stars.textContent].map(s => `<span>${s}</span>`).join('');
+      gsap.from(stars.children, { scale: 0, rotate: -90, stagger: .09, duration: .5, delay: .4, ease: 'back.out(3)', scrollTrigger: { trigger: stars, start: 'top 96%', once: true } });
+    });
+
+    /* La carta de agudeza se enfoca con el scroll */
+    gsap.utils.toArray('.chart div').forEach((line, i) => {
+      gsap.fromTo(line, { filter: `blur(${6 + i * 3}px)` }, { filter: 'blur(0px)', ease: 'none',
+        scrollTrigger: { trigger: '.chart', start: 'top 85%', end: 'center 50%', scrub: true } });
+    });
+
+    /* La frase se ilumina palabra por palabra */
+    const statement = document.getElementById('statement');
+    statement.setAttribute('aria-label', statement.textContent);
+    statement.innerHTML = statement.textContent.split(' ').map(w => `<span aria-hidden="true">${w}</span>`).join(' ');
+    gsap.fromTo('#statement span', { opacity: .2 }, { opacity: 1, stagger: .1, ease: 'none',
+      scrollTrigger: { trigger: '.signs', start: 'top top', end: '+=130%', pin: true, scrub: .5 } });
+  }
+</script>
+</body>
+</html>

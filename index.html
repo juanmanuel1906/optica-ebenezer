@@ -48,8 +48,30 @@
   .logo { display: block; height: 54px; width: auto; overflow: visible; }
 
   /* Intro, progreso y WhatsApp */
-  .intro { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: var(--gutter); background: var(--ink); }
+  .intro { display: none; position: fixed; inset: 0; z-index: 50; place-items: center; padding: var(--gutter); background: var(--ink); }
+  .js .intro { display: grid; }
   .intro .logo { height: auto; width: min(82vw, 620px); }
+  .intro .logo-plate, .intro .logo-eye { transform-box: fill-box; transform-origin: center; }
+  .intro .logo-band { transform-box: fill-box; transform-origin: left; }
+  .intro .logo-plate { animation: intro-plate .45s ease-out backwards; }
+  .intro .logo-tube { animation: intro-fade .4s ease-out .2s backwards; }
+  .intro .logo-band { animation: intro-band .4s cubic-bezier(.2, .8, .3, 1) .25s backwards; }
+  .intro .logo-eye { animation: intro-eye .55s cubic-bezier(.34, 1.56, .64, 1) .45s backwards, intro-blink .18s ease-in-out 1.35s; }
+  .intro .ltr { animation: intro-letter .4s ease-out backwards; }
+  .intro .ltr:nth-of-type(1) { animation-delay: .6s; }
+  .intro .ltr:nth-of-type(2) { animation-delay: .645s; }
+  .intro .ltr:nth-of-type(3) { animation-delay: .69s; }
+  .intro .ltr:nth-of-type(4) { animation-delay: .735s; }
+  .intro .ltr:nth-of-type(5) { animation-delay: .78s; }
+  .intro .ltr:nth-of-type(6) { animation-delay: .825s; }
+  .intro .ltr:nth-of-type(7) { animation-delay: .87s; }
+  .intro .ltr:nth-of-type(8) { animation-delay: .915s; }
+  @keyframes intro-plate { from { opacity: 0; transform: scale(.9); } }
+  @keyframes intro-fade { from { opacity: 0; } }
+  @keyframes intro-band { from { transform: scaleX(0); } }
+  @keyframes intro-eye { from { transform: scale(0); } }
+  @keyframes intro-blink { 50% { transform: scaleY(.06); } }
+  @keyframes intro-letter { from { opacity: 0; transform: translateY(46px); } }
   .locked { overflow: hidden; }
   .progress { position: fixed; inset: 0 0 auto; z-index: 25; height: 4px; background: var(--cyan); transform: scaleX(0); transform-origin: left; }
   .fab { position: fixed; z-index: 30; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); width: 60px; height: 60px; display: grid; place-items: center; border-radius: 50%; background: #25d366; color: var(--white); box-shadow: 0 10px 28px rgba(10, 31, 92, .35); }
@@ -196,6 +218,8 @@
 </head>
 <body>
 
+<div class="intro" aria-hidden="true"></div>
+
 <div class="progress" aria-hidden="true"></div>
 
 <a class="fab" href="https://wa.me/573001627549" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
@@ -242,6 +266,16 @@
     <a class="chip" href="#visita">Visítanos</a>
   </div>
 </nav>
+
+<script>
+  /* La intro cubre la página desde el primer pintado, antes de que llegue GSAP */
+  if (document.documentElement.classList.contains('js')) {
+    const introLogo = document.querySelector('.brand .logo').cloneNode(true);
+    introLogo.querySelector('defs').remove();
+    document.querySelector('.intro').append(introLogo);
+    document.body.classList.add('locked');
+  }
+</script>
 
 <main>
   <header class="hero" id="inicio">
@@ -435,15 +469,9 @@
     gsap.registerPlugin(ScrollTrigger);
     const fine = matchMedia('(pointer: fine)').matches;
 
-    /* Intro: se arma el logo, parpadea y se abre la página */
-    const intro = document.createElement('div');
-    intro.className = 'intro';
-    intro.setAttribute('aria-hidden', 'true');
-    const introLogo = logoCopy();
-    intro.append(introLogo);
-    document.body.append(intro);
-    document.body.classList.add('locked');
-    const introEye = introLogo.querySelector('.logo-eye');
+    /* Intro: el logo se arma con CSS; aquí solo se abre la página, cuando ese armado ya terminó */
+    const intro = document.querySelector('.intro');
+    const introDone = Math.max(0, 1.6 - performance.now() / 1000);
     gsap.timeline({ onComplete() {
       intro.remove();
       document.body.classList.remove('locked');
@@ -451,12 +479,7 @@
       startBlink();
       if (startHash) document.querySelector(startHash)?.scrollIntoView();
     } })
-      .from(introLogo.querySelector('.logo-plate'), { opacity: 0, scale: .9, transformOrigin: '50% 50%', duration: .45, ease: 'power2.out' })
-      .from(introLogo.querySelector('.logo-band'), { scaleX: 0, transformOrigin: '0 50%', duration: .4, ease: 'power3.out' }, '-=.2')
-      .from(introEye, { scale: 0, transformOrigin: '50% 50%', duration: .55, ease: 'back.out(2.2)' }, '-=.3')
-      .from(introLogo.querySelectorAll('.ltr'), { y: 46, opacity: 0, stagger: .045, duration: .4, ease: 'power3.out' }, '-=.4')
-      .to(introEye, { scaleY: .06, transformOrigin: '50% 50%', duration: .09, yoyo: true, repeat: 1 }, '+=.1')
-      .to(intro, { yPercent: -100, duration: .7, ease: 'power4.inOut' }, '+=.15')
+      .to(intro, { yPercent: -100, duration: .7, ease: 'power4.inOut' }, introDone)
       .from('.nav', { y: -90, duration: .6, ease: 'power3.out' }, '-=.35')
       .from('.hero-foot p, .hero-foot .btn', { y: 36, opacity: 0, stagger: .08, duration: .6, ease: 'power3.out' }, '-=.45')
       .from('.fab', { scale: 0, duration: .6, ease: 'back.out(2.5)' }, '-=.3');
@@ -510,8 +533,8 @@
 
     /* Recorre el titular sola hasta que el visitante mueve el cursor o el dedo */
     const drift = gsap.timeline({ repeat: -1, yoyo: true, onUpdate: render, defaults: { ease: 'sine.inOut' } })
-      .to(pos, { x: () => small() ? box().width * .56 : Math.min(box().width * .62, title.right - r), y: () => title.top + title.height * .18, duration: 3.2 })
-      .to(pos, { x: () => small() ? box().width * .44 : Math.max(box().width * .26, r * 2), y: () => title.top + title.height * .84, duration: 3.2 });
+      .to(pos, { x: () => small() ? box().width * .51 : Math.min(box().width * .62, title.right - r), y: () => title.top + title.height * .18, duration: 3.2 })
+      .to(pos, { x: () => small() ? box().width * .49 : Math.max(box().width * .26, r * 2), y: () => title.top + title.height * .84, duration: 3.2 });
 
     const follow = { x: gsap.quickTo(pos, 'x', { duration: .35, ease: 'power3', onUpdate: render }),
                      y: gsap.quickTo(pos, 'y', { duration: .35, ease: 'power3', onUpdate: render }) };
@@ -609,6 +632,10 @@
     statement.innerHTML = statement.textContent.split(' ').map(w => `<span aria-hidden="true">${w}</span>`).join(' ');
     gsap.fromTo('#statement span', { opacity: .2 }, { opacity: 1, stagger: .1, ease: 'none',
       scrollTrigger: { trigger: '.signs', start: 'top top', end: '+=130%', pin: true, scrub: .5 } });
+  } else if (!reduced) {
+    /* Sin GSAP (CDN caído) la intro no puede dejar la página tapada */
+    document.querySelector('.intro').remove();
+    document.body.classList.remove('locked');
   }
 </script>
 </body>
